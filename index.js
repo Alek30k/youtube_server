@@ -7,6 +7,8 @@ import commentRoutes from "./routes/comments.js";
 import authRoutes from "./routes/auth.js";
 import cookieParser from "cookie-parser";
 
+import cors from "cors";
+
 const app = express();
 dotenv.config();
 
@@ -21,6 +23,7 @@ const connect = () => {
     });
 };
 
+app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
 app.use("/api/auth", authRoutes);
@@ -39,7 +42,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(process.env.PORT, () => {
+app.listen(3001, () => {
   connect();
   console.log("Connected to Server!");
 });
